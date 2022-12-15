@@ -119,6 +119,10 @@ yaml
 {{ template "label" . }}
 
 
+  {{ if eq .Values.favorite.drink "coffee" }}mug: "true"{{ end }}
+
+
+
 chart Hook !!!!!!!!!!!!!!1
 
 pre and post

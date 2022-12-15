@@ -43,6 +43,15 @@ helm create <Release-name> ./dir
 1. Chart , Value , Cappabilities , Release
 
 
+Release.Name: The name of the release (not the chart)
+Release.Namespace: The namespace the chart was released to.
+Release.Service: The service that conducted the release.
+Release.IsUpgrade: This is set to true if the current operation is an upgrade or rollback.
+Release.IsInstall: This is set to true if the current operation is an install.
+Chart: The contents of the Chart.yaml. Thus, the chart version is obtainable as Chart.Version and the maintainers are in Chart.Maintainers.
+Files: A map-like object containing all non-special files in the chart. This will not give you access to templates, but will give you access to additional files that are present (unless they are excluded using .helmignore). Files can be accessed using {{ index .Files "file.name" }} or using the {{.Files.Get name }} function. You can also access the contents of the file as []byte using {{ .Files.GetBytes }}
+Capabilities: A map-like object that contains information about the versions of Kubernetes ({{ .Capabilities.KubeVersion }}) and the supported Kubernetes API versions ({{ .Capabilities.APIVersions.Has "batch/v1" }})
+
 
 
 verifying chart 
@@ -53,6 +62,11 @@ helm template [yaml intentation ]
 helm template --debug [will show the error line ]
 
 helm install <> <> --dry-run [kube error]
+
+
+view manifest 
+helm template <folder/chartname>
+helm get manifest <release name>
 
 
 function!!!!!!!!!!!1
@@ -184,3 +198,8 @@ $ cp nginx-chart-0.1.0.tgz nginx-chart-0.1.0.tgz.provn ginx-chart-files/
 $ helm repo index nginx-chart-files/ --url https://example.com/charts
 $ ls nginx-chart-files
 index.yaml nginx-chart-0.1.0.tgz nginx-chart-0
+
+
+
+for updateing dependancy chart 
+helm dependency update <alias chart name>

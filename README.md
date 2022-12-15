@@ -125,9 +125,9 @@ annotations:
 
 package sign !!!!!!!!!!!1
 
-gpg --quick-generate-key "John Smith"
+gpg --quick-generate-key "John Smith" # create pub and pvt keys 
 
- gpg --export-secret-keys >~/.gnupg/secring.gpg
+ gpg --export-secret-keys >~/.gnupg/secring.gpg  # export pvt key 
 
  helm package --sign --key 'John Smith' --keyring ~/.gnupg/secring.gpg ./nginx-chart
 

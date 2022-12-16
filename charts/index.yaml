@@ -9,6 +9,6 @@ entries:
     name: helm
     type: application
     urls:
-    - charts/helm-0.1.0.tgz
+    - helm-0.1.0.tgz
     version: 0.1.0
 generated: "2022-12-16T15:58:13.604642123+05:30"

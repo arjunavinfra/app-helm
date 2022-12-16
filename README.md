@@ -174,36 +174,69 @@ nginx-chart-0.1.0.tgz: sha256:b7d05022a9617ab953a3246bc7ba6a9de9d4286b2e78e3ea79
 
 
 $ sha256sum nginx-chart-0.1.0.tgz
+
 b7d05022a9617ab953a3246bc7ba6a9de9d4286b2e78e3ea7975cc54698c4274 nginx-chart-0.1.0.tg
 
 helm verify ./nginx-chart-0.1.0.tgz
+
 Error: failed to load keyring: open /home/vagrant/.gnupg/pubring.gpg: no such file or directory
+
 $ gpg --export 'John Smith' > mypublickey
+
 $ helm verify --keyring ./mypublickey ./nginx-0.1.0.tgz
+
 Signed by: John Smith
+
 Using Key With Fingerprint: 20F2395A3176A22DD33DA45470D5188339885A0B
+
 Chart Hash Verified: sha256:b7d05022a9617ab953a3246bc7ba6a9de9d4286b2e78e3ea7975cc54698c4274
+
 $ gpg --recv-keys --keyserver keyserver.ubuntu.com 8D40FE0CACC3FED4AD1C217180BA57AAFAAD1CA5
+
 $ helm install --verify nginx-chart-0.1.0
 
 
 uploading file
 
 pkg.tgz
+
 index.yaml [details of pkg create when we run the index comment]
+
 provance [cryptography verification]
 
 
 
 $ ls
+
 nginx-chart nginx-chart-0.1.0.tgz nginx-chart-0.1.0.tgz.prov
+
 $ mkdir nginx-chart-files
+
 $ cp nginx-chart-0.1.0.tgz nginx-chart-0.1.0.tgz.provn ginx-chart-files/
+
 $ helm repo index nginx-chart-files/ --url https://example.com/charts
+
 $ ls nginx-chart-files
+
 index.yaml nginx-chart-0.1.0.tgz nginx-chart-0
 
 
 
 for updateing dependancy chart 
+
 helm dependency update <alias chart name>
+
+
+
+
+for packaging the application and publish over github 
+
+helm package ./
+
+helm repo index ./
+
+sha -a  256 <pkg>.tgz
+
+create the github page 
+
+helm repo add arjun https://arjunavinfra.github.io/app-helm/charts

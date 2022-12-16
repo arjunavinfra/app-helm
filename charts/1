@@ -1,0 +1,16 @@
+#!/bin/bash
+RED='\033[0;31m'
+NC='\033[0m'
+
+if [ $# -eq 0 ]; then
+ echo -e "{RED} Enter the commit message ${NC}"
+ git add .
+git commit -m "updated files as per the requirment"
+git push
+
+
+else
+git add .
+git commit -m "$@"
+git push  
+fi
